@@ -19,7 +19,6 @@
     "mongoose": "^5.12.3",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
-    "passport-azure-ad": "^4.3.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-azure-ad": "^4.3.0"
   }
 }
