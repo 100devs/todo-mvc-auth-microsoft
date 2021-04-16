@@ -5,9 +5,9 @@ module.exports = {
         console.log(req.user)
         try{
             //Do we want to grab all the todos?
-            const todoItems = await Todo.find()
+            const todoItems = await Todo.find({microsoftId: req.user.microsoftId})
             //How can we grab our logged in users left to dos?
-            const itemsLeft = await Todo.countDocuments({completed: false})
+            const itemsLeft = await Todo.countDocuments({microsoftId: req.user.microsoftId, completed: false})
             res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
         }catch(err){
             console.log(err)
