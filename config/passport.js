@@ -1,4 +1,4 @@
-const OIDCStrategy = require('passport-azure-ad').OIDCStrategy
+const OIDCStrategy = require('passport-azure-ad').OIDCStrategy  //defining a new stategy 
 const mongoose = require('mongoose')
 const config = require('../config/config')
 const User = require('../models/User')

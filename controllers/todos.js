@@ -1,7 +1,7 @@
-const Todo = require('../models/Todo')
+const Todo = require('../models/Todo') //Gives us access to db collections and give us access to methods to interact with that data
 
-module.exports = {
-    getTodos: async (req,res)=>{
+module.exports = { // Creates one object to hold all routing methods to 
+    getTodos: async (req,res)=>{ // Gets all documents from the collections. Counts and finds documents and renders ejs file.
         console.log(req.user)
         try{
             //Do we want to grab all the todos?
@@ -54,4 +54,4 @@ module.exports = {
             console.log(err)
         }
     }
-}    
+}

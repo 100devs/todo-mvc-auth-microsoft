@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const todosController = require('../controllers/todos') 
+const todosController = require('../controllers/todos')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
-router.get('/', ensureAuth, todosController.getTodos)
+router.get('/', ensureAuth, todosController.getTodos) // when get request is made we need to check user is authenticated and then calls the todoController function getTodos
 
 router.post('/createTodo', todosController.createTodo)
 
