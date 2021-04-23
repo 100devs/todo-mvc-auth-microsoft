@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express') //copied and pasted from microsoft nothing new needs to be changed
 const passport = require('passport')
 const config = require('../config/config')
 const router = express.Router()
@@ -6,12 +6,12 @@ const router = express.Router()
 
 router.get('/login',
   function(req, res, next) {
-    passport.authenticate('azuread-openidconnect', 
-      { 
-        response: res,                      
-        resourceURL: config.resourceURL,    
-        customState: 'my_state',            
-        failureRedirect: '/' 
+    passport.authenticate('azuread-openidconnect',
+      {
+        response: res,
+        resourceURL: config.resourceURL,
+        customState: 'my_state',
+        failureRedirect: '/'
       }
     )(req, res, next);
   },
@@ -22,10 +22,10 @@ router.get('/login',
 
 router.get('/openid/return',
   function(req, res, next) {
-    passport.authenticate('azuread-openidconnect', 
-      { 
-        response: res,    
-        failureRedirect: '/'  
+    passport.authenticate('azuread-openidconnect',
+      {
+        response: res,
+        failureRedirect: '/'
       }
     )(req, res, next);
   },
@@ -36,10 +36,10 @@ router.get('/openid/return',
 
 router.post('/openid/return',
   function(req, res, next) {
-    passport.authenticate('azuread-openidconnect', 
-      { 
-        response: res,    
-        failureRedirect: '/'  
+    passport.authenticate('azuread-openidconnect',
+      {
+        response: res,
+        failureRedirect: '/'
       }
     )(req, res, next);
   },
