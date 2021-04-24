@@ -1,11 +1,15 @@
-const OIDCStrategy = require('passport-azure-ad').OIDCStrategy
-const mongoose = require('mongoose')
-const config = require('../config/config')
-const User = require('../models/User')
-
+const OIDCStrategy = require("passport-azure-ad").OIDCStrategy; // Load the Azure's strategies for handling users (Microsoft accounts, access tokens, social media accounts, etc...)
+const mongoose = require("mongoose"); // Mongoose again deals with DB communication
+const config = require("../config/config"); // Require config file
+const User = require("../models/User"); // Require the user model
+// The rest is MS passport azure ad magic! //
+//User authentication
 module.exports = function (passport) {
+  // Express is calling the function with passport as an argument.
+  // passport function
   passport.use(
-    new OIDCStrategy({
+    new OIDCStrategy(
+      {
         identityMetadata: config.creds.identityMetadata,
         clientID: config.creds.clientID,
         responseType: config.creds.responseType,
@@ -25,34 +29,37 @@ module.exports = function (passport) {
         cookieEncryptionKeys: config.creds.cookieEncryptionKeys,
         clockSkew: config.creds.clockSkew,
       },
+      // If a valid token is provided a user object will be created
       async (accessToken, refreshToken, profile, done) => {
-        console.log('auth: ', profile)
+        console.log("auth: ", profile);
+        // Creates a user object
         const newUser = {
-          microsoftId: profile.oid,
-          displayName: profile.displayName,
-        }
+          microsoftId: profile.oid, // MS openID
+          displayName: profile.displayName, // User name
+        };
 
         try {
-          let user = await User.findOne({ microsoftId: profile.oid })
+          let user = await User.findOne({ microsoftId: profile.oid }); // Will search in the DB for a match
 
           if (user) {
-            done(null, user)
+            done(null, user); // If found a user will be returned
           } else {
-            user = await User.create(newUser)
-            done(null, user)
+            user = await User.create(newUser); // If not a new user will be created in the DB
+            done(null, user); // Return the new user
           }
         } catch (err) {
-          console.error(err)
+          // Catch any error and display a console log message
+          console.error(err);
         }
       }
     )
-  )
-
+  );
+  // Saves the user id into the session
   passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
-
+    done(null, user.id);
+  });
+  // Retreive whole user object
   passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  })
-}
+    User.findById(id, (err, user) => done(err, user));
+  });
+};
