@@ -6,25 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mainfeed.css">
 </head>
 <body>
+<header>
+<nav>
+  <ul>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/profile">My Profile</a></li>
+    <li><a href="../signup/logout">Logout</a></li>
+  </ul>
+  </nav>
+</header>
     <h1>Welcome to Doom-Scrolling!</h1>
-    <h1>Upload pic</h1>
     <form action="/dashboard" method="post" enctype="multipart/form-data">
-        <input type="file" name="photo" />
-        <input type="text" name="desc" id="desc">
-        <input type="text" name="title" id="title">
+        <label> Upload pic
+          <input type="file" name="photo" />
+        </label>
+        <label>Caption:
+          <input type="text" name="caption">
+        </label>
         <input type="submit" value="Submit">
     </form>
-    <% for (let photo of photos) { %>
+    <section id="mainFeed">
+    <% for (let userPost of userPosts) { %>
       <div id="photoContainer">
-        <p><%= photo.user %> posted: </p>
-        <p><%= photo.likes %> Likes <span id="addLike">Like</span></p>
+      
+      
+        <p><%= userPost.user %> posted: </p>
+        <p><%= userPost.likes %> Likes <span id="addLike">Like</span></p>
         <div id="displayImage">
-          <img src=<%= photo.img %>>
-        </div>
+        <img src='uploads/<%= userPost.imgName %>'>
+        <p><%= userPost.caption %></p>
+      </div> 
         <ul>
-          <% for (let comment of photo.comments) { %>
+          <% for (let comment of userPost.comments) { %>
             
             <li>
               <p><%= comment.user %> says: <span>
@@ -39,7 +55,7 @@
       </div>
 
     <% } %>
-
+    </section>
 
 
 

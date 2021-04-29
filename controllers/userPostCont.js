@@ -12,8 +12,7 @@ module.exports = {
     createPost: async (req, res)=>{
         try{
             await userPosts.create({
-              title: req.body.title,
-              desc: req.body.description,
+              caption: req.body.description,
               createdAt: req.body.date,
               imgName: req.body.imageURL,
               userID: req.user.userID

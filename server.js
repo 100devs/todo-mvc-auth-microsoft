@@ -70,44 +70,18 @@ app.use('/todos', todoRoutes);
 //app.use('/post', postsRoutes);
 
 // this is a test, set up mvc later
-app.get('/dashboard', ensureAuth, (req, res) => {
+app.get('/dashboard', ensureAuth, async (req, res) => {
   console.log(req.user);
+  const postArr = await UserPost.find();
+  // UserPost
   res.render('dashboard', {
-    // replace the values with stuff from the database
-    photos: [
-      {
-        user: "dvkr",
-        likes: 4,
-        img: "https://picsum.photos/400",
-        comments: [
-          {
-            user: "hater73683",
-            message: "I am greatly displeased with this picture !!1!11!1"
-          },
-          {
-            user: "friend",
-            message: "YAS"
-          }
-        ]
-      },
-      {
-        user: "someone else",
-        likes: 0,
-        img: "https://picsum.photos/200",
-        comments: [
-          {
-            user: "random person",
-            message: ""
-          }
-        ]
-      }
-    ]
+    userPosts: postArr
   })
 })
 
 app.post('/dashboard', upload, async (req, res) => {
     try{
-        await UserPost.create({text: req.body.desc, imgName: req.file.filename})
+        await UserPost.create({imgName: req.file.filename, caption: req.body.caption, username: req.user.username})
         console.log('Post has been added!')
         res.redirect('/dashboard')
     }catch(err){

@@ -18,3 +18,6 @@ Options to login/signup. New users will signup, get posted to the db, and get re
 # Dashboard Page: 
 - Renders dashboard.ejs upon get request. An array with all 'post' objects from Posts.find() will be passed in to be rendered in the feed.
 - Place special css classes upon posts with req.user.username matching to distinguish it from others' posts.
+
+# PROPERTIES OF USERPOST
+- 

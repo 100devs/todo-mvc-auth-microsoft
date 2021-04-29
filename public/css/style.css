@@ -1,3 +1,10 @@
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+}
+nav li {
+  text-decoration: none;
+}
 h1{
     color: red;
     margin:0;
@@ -33,3 +40,5 @@ main > div {
   padding: 1rem 3rem;
 }
 .addLike {padding: 1rem;}
+
+img{width: 300px;}

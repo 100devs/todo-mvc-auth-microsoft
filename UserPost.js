@@ -9,14 +9,14 @@ const UserPostSchema = new mongoose.Schema({ //userpost schema
     type: String,
     required: true
   },
-  caption: { // desc
+  desc: {
     type: String,
     required: true
   },
-  // title: {
-  //   type: String,
-  //   required: true
-  // },
+  title: {
+    type: String,
+    required: true
+  },
   likes: {
     type: Number,
     default: 0
@@ -25,7 +25,7 @@ const UserPostSchema = new mongoose.Schema({ //userpost schema
     type: [String],
     default: []
   },
-  username: {
+  userID: {
     type: String,
     required: true
   }
