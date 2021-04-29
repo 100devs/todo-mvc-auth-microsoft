@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Welcome to Doom-Scrolling!</h1>
+    <h1>Upload pic</h1>
+    <form action="/dashboard" method="post" enctype="multipart/form-data">
+        <input type="file" name="photo" />
+        <input type="text" name="desc" id="desc">
+        <input type="text" name="title" id="title">
+        <input type="submit" value="Submit">
+    </form>
+    <% for (let photo of photos) { %>
+      <div id="photoContainer">
+        <p><%= photo.user %> posted: </p>
+        <p><%= photo.likes %> Likes <span id="addLike">Like</span></p>
+        <div id="displayImage">
+          <img src=<%= photo.img %>>
+        </div>
+        <ul>
+          <% for (let comment of photo.comments) { %>
+            
+            <li>
+              <p><%= comment.user %> says: <span>
+            <%= comment.message %></span></p>
+            </li>
+          <% } %>
+        </ul>
+        <form method="POST" action="/addComment">
+          <label>Add comment: <input type="text" name="message"></label>
+          <button>Post</button>
+        </form>
+      </div>
+
+    <% } %>
+
+
+
+
+    <a href="../signup/logout">Logout</a>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 h1{
     color: red;
+    margin:0;
 }
 .completed{
     text-decoration: line-through;
@@ -8,3 +9,27 @@ h1{
 .not{
     text-decoration: underline;
 }
+
+main {
+  display: flex;
+  flex-flow: column;
+}
+main * {
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navigate, .addLike {
+  color: white;
+  background-color: blue;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1rem 3rem;
+}
+.addLike {padding: 1rem;}
