@@ -16,7 +16,7 @@ const homeRoutes = require('./routes/home') //import auth routes from local modu
 // TODO //dont comment anything out here, just testing stuff
 const todoRoutes = require('./routes/todos') //import auth routes from local modules
 //TESTING post controller
-//const postsRoutes = require('./routes/post') //import auth routes from local module
+const postsRoutes = require('./routes/post') //import auth routes from local module
 require('dotenv').config({ path: './config/.env' }) // enviornment variables
 
 // Passport config
@@ -67,17 +67,17 @@ app.use('/signup', signupRoutes)
 app.use('/todos', todoRoutes);
 
 //TESTING post controller
-//app.use('/post', postsRoutes);
+app.use('/post', postsRoutes);
 
 // this is a test, set up mvc later
-app.get('/dashboard', ensureAuth, async (req, res) => {
-  console.log(req.user);
-  const postArr = await UserPost.find();
+//app.get('/dashboard', ensureAuth, async (req, res) => {
+//  console.log(req.user);
+//  const postArr = await UserPost.find();
   // UserPost
-  res.render('dashboard', {
-    userPosts: postArr
-  })
-})
+// res.render('dashboard', {
+//    userPosts: postArr
+//  })
+//})
 
 app.post('/dashboard', upload, async (req, res) => {
     try{

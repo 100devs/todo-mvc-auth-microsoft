@@ -33,33 +33,14 @@
       <div id="photoContainer">
       
       
-        <p><%= userPost.user %> posted: </p>
-        <p><%= userPost.likes %> Likes <span id="addLike">Like</span></p>
+        <p><%= userPost.username %> posted: </p>
+        <p><%= userPost.likes %> Likes </p>
         <div id="displayImage">
         <img src='uploads/<%= userPost.imgName %>'>
+        <a href="post/<%= userPost.id %>">Click to view post</a>
         <p><%= userPost.caption %></p>
       </div> 
-        <ul>
-          <% for (let comment of userPost.comments) { %>
-            
-            <li>
-              <p><%= comment.user %> says: <span>
-            <%= comment.message %></span></p>
-            </li>
-          <% } %>
-        </ul>
-        <form method="POST" action="/addComment">
-          <label>Add comment: <input type="text" name="message"></label>
-          <button>Post</button>
-        </form>
-      </div>
-
     <% } %>
     </section>
-
-
-
-    <a href="../signup/logout">Logout</a>
-    <script src="js/main.js"></script>
 </body>
 </html>

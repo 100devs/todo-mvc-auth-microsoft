@@ -1,8 +1,14 @@
 ## Binary Upload Boom
 
-## Things to do/help:
-- dashboard.ejs has a form to submit comments, so we'll need a route for '/addComment' to handle a POST request
-  - help with how to link the comment to the correct photo? (is there a way to add a listener that grabs the photo's unique id? Should this be a PUT request instead?)
+## Things to do/help (updated April 29th):
+- CSS for: all ejs files
+- EJS files: profile.ejs, singlePost.ejs (with lots of event listeners)
+- Routes (and controllers) for /addComment (put request coming from client-side js, and redirect), /profile (get request, res.render)
+- Client-Side JS (main.js linked to dashboard.ejs):
+  - event listener for 'Post Comment' button should send a PUT request, and push the new comment to the comments array
+  - event listener for clicking 'Like' should send a PUT request to increase the total likes by one
+  - event listener for deleting userPost (comments are forever)
+- Update routes to handle the each request sent from client-side js
 
 ## ejs files
 - index.ejs (done -- paths: '/auth/login', '/signup', '/profile')
@@ -30,3 +36,4 @@
 - 
 
 PASS IN USER ID WHEN MAKING POST AND DO FINDONE WITH REQ.USER.id I THINK
+
