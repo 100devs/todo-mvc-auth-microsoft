@@ -1,0 +1,40 @@
+*{
+  box-sizing: border-box
+}
+
+.signup-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.signup-h1{
+  font-size: 40px;
+  font-family: 'Staatliches', cursive;
+  margin-top: 0;
+  border-bottom: 2px solid black;
+}
+
+.signup-form{
+    padding: 3px;
+    text-align: center;
+}
+
+.signup-input{
+   font-family: 'Slabo 27px', serif;
+   font-size:15px;
+   padding: 12px;
+    margin: 10px;
+    width: 60%;
+}
+
+.signup-login-a{
+  text-decoration:none;
+  color:black;
+  font-family: 'Slabo 27px', serif;
+}
+
+.signup-login-a:hover{
+  color:blue;
+}

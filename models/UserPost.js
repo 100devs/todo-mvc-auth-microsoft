@@ -5,7 +5,7 @@ const UserPostSchema = new mongoose.Schema({ //userpost schema
     type: Date,
     default: Date.now
   },
-  imgName: {
+  img: {
     type: String,
     required: true
   },
@@ -17,9 +17,17 @@ const UserPostSchema = new mongoose.Schema({ //userpost schema
   //   type: String,
   //   required: true
   // },
+  cloudinaryId: {
+    type: String,
+    required: true
+  },
   likes: {
     type: Number,
     default: 0
+  },
+  likedUsers: {
+    type: [String],
+    default: []
   },
   comments: {
     type: [String],

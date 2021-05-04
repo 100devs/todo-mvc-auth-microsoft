@@ -1,38 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/mainfeed.css">
-</head>
-<body>
-<header>
-<nav>
-  <ul>
-    <li><a href="/dashboard">Dashboard</a></li>
-    <li><a href="/profile">My Profile</a></li>
-    <li><a href="../signup/logout">Logout</a></li>
-  </ul>
-  </nav>
-</header>
-    <h1>Welcome to Doom-Scrolling!</h1>
-<!--    Page to display individual posts -->
-    <p>Posted by <%= post.username %></p>
-    <% if (post.username === username) { %>
-      
-    <% } %>
-    <button id="deleteBtn">Delete</button>
-    <p>Caption: <%= post.caption %></p>
-    <button id="likeBtn">Like</button>
-     <img src='/uploads/<%=post.imgName%>' data-imgID=<%=post.id%> id="mainImg">
-        <form method="POST" action="/addComment">
-          <label>Add comment: <input type="text" name="message" id="message"></label>
-          <button id="addCommentBtn">Post</button>
-        </form>
+<%- include('partials/_header_main'); %>
 
+<section class = "single-post-container">
+  <section class= "singlePost-img-container">
+
+  <h1 class="singlePost-h1"> <%= post.username %>'s Post</h1>
+   <a class="singlePost-profile-a" href="../profile/<%= post.username %>">View <%= post.username %>'s profile %></a>
+<!--    Page to display individual posts -->
+   
+   
+    
+     <img src='<%=post.img%>' data-imgID=<%=post.id%> id="mainImg">
+     <p class="singlePost-caption">Caption: <%= post.caption %></p>
+
+     <i id="likeBtn"class="fas fa-heart">
+     </i>
+     <p id="likes">Likes:
+     <span id="grabLikes"><%= post.likes %></span>
+     </p>
+     <p id="errorMsg"></p>
+
+      <% if (post.username === username) { %>
+        <button class="deleteBtn" id="deleteBtn">Delete Photo</button>
+    <% } %>
+    
+
+    </section>
+
+  <section class="singlePost-comment-container">
+    <p class= "singlePost-comment-p">Comments: </p>
+
+   <div class="singlePost-comments">
+    <% for(comment of post.comments) { %> 
+      <p class="singlePost-comment"><%=comment%> </p>
+    <% } %>
+    </div>
+
+
+    <div>
+    <input id="message" type="text" name="message"  placeholder="Add a comment">
+          <button id="commentBtn">Post</button>
+      </div>
+   
+  </section>
+
+    </section> 
     <script src="/js/main.js"></script>
 </body>
 </html>

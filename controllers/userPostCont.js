@@ -5,55 +5,56 @@ module.exports = {
     await UserPost.findOne({_id: req.params.id}, (err, post) => {
       if(err) console.error(err);
       else {
-        console.log(post.imgName);
+        console.log(post.img);
         res.render('singlePost', {post: post, username: req.user.username});
       }
     });
+  },
+  deletePost: async (req, res) => {
+    try {
+    console.log('test');
+    await UserPost.findOneAndDelete({_id: req.body.id});
+    console.log('Post has been deleted');
+    res.json({message: 'done'});
+    } catch(err) {
+      console.error(err);
+    }
+  },
+  likePost: async (req, res) => {
+    try {
+      let bool = false;
+      await UserPost.findOne({_id: req.body.id}, (err, post) => {
+        if(err) console.error(err);
+        console.log(post);
+        if(post.likedUsers.includes(req.user.username)) {
+          bool = true;
+          return res.json({message: 'exists'});
+        }
+      });
+      console.log('test');
+      if(!bool) {
+      let newCount = ++req.body.likes;
+      await UserPost.findOneAndUpdate({_id: req.body.id}, {
+        likes: newCount,
+        $push: {likedUsers: req.user.username}
+      });
+      console.log('Likes updated');
+      res.json({message: 'done'});
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  },
+  commentPost: async (req, res) => {
+    try {
+      console.log('test');
+      let formattedComment = `'${req.body.comment}' - ${req.user.username}`;
+      await UserPost.findOneAndUpdate({_id: req.body.id}, {
+        $push: {comments: formattedComment}
+      });
+      res.json({message: 'done'});
+    } catch(err) {
+      console.error(err);
+    }
   }
 }
-
-// module.exports = {  
-//     getPosts: async (req,res)=>{
-//         try{
-//             const selectedPost = await userPosts.find({id: req.params.id}) //TODO: Change to db name
-//             res.render('post.ejs', {selectedPost: selectedPost}) //TODO: Change to db and form names
-//         }catch(err){
-//             console.log(err)
-//         }
-//     },
-//     createPost: async (req, res)=>{
-//       try{
-//             await userPosts.create({
-//               caption: req.body.caption,
-//               username: req.user.username,
-//               imgName: req.file.filename,
-//             }) //TODO: Change to form names
-//             console.log('Your post has been created!')
-//             res.redirect('/dashboard') //TODO: Modify to desired redirect
-//         }catch(err){
-//             console.log(err)
-//         }
-//     },
-
-//     likePost: async (req, res)=>{ //PLACEHOLDER
-//         try{ 
-//             await userPosts.findOneAndUpdate({id: req.body.id},{
-//               //likes: Number(req.body.likes)++,
-//             })
-//             //console.log('Like has been modified!')
-//             //res.redirect('/:'+ req.body.id) 
-//         }catch(err){
-//             console.log(err)
-//         }
-//     },
-//     deletePost: async (req, res)=>{ //PLACEHOLDER
-//         try{ 
-//           //TODO: Verify user is owner of post
-//             //await userPosts.findOneAndDelete({id: req.body.id})
-//             //console.log('Post has been deleted!')
-//             //res.redirect('/todos') 
-//         }catch(err){
-//             console.log(err)
-//         }
-//     },
-// }

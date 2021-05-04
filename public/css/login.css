@@ -1,0 +1,44 @@
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     padding: 30px;
+}
+
+
+.login-h1{
+  font-size: 40px;
+  font-family: 'Staatliches', cursive;
+  border-bottom: 2px solid black;
+  margin-top: 0;
+}
+
+.login-form{
+    padding: 3px;
+    text-align:center;
+}
+
+.login-input {
+   font-family: 'Slabo 27px', serif;
+   font-size:15px;
+    padding: 12px;
+    margin: 10px;
+    width: 80%;
+}
+
+.submit-btn{
+    padding: 12px;
+    margin: 10px;
+    width:80%;
+}
+
+.login-a{
+  text-decoration:none;
+  color:black;
+  font-family: 'Slabo 27px', serif;
+}
+
+.login-a:hover{
+  color:blue;
+}

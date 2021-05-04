@@ -10,23 +10,29 @@
         
         <input type="submit" value="Submit">
     </form>
-
+    <section id="profileBox">
+    <% if(other == true) { %>
+      <h2 class="profileTitle" style="text-align: center;"><%= username%> has <%= userPosts.length %> <%= userPosts.length === 1 ? "post" : "posts" %>:</h2>
+    <% } else { %>
+      <h2 class="profileTitle" style="text-align: center;"><%= username%>, you have <%= userPosts.length %> <%= userPosts.length === 1 ? "post" : "posts" %>:</h2>
+    <% } %>
+    </section>
     <section class="mainFeed">
     <% for (let userPost of userPosts) { %>
       <div id="photoContainer">
-        
-        <p class ="dashboard-userPost-p"><a class="userPost-profile-a" href="/profile/<%= userPost.username %>"><%= userPost.username %></a> posted: </p>
        <section class = "dashboard-displayImg-container">
         <div class="displayImage">
         </section>
        <p> <%= userPost.caption %></p>
-       <a href="post/<%= userPost.id %>">
-        <img class ="dashboard-userPost-img" src='<%= userPost.img %>'>
-        </a>
+       <a href="../post/<%= userPost.id %>">
+        <img class ="dashboard-userPost-img" src='<%= userPost.img %>'></a>
+         
+
         <div class = "dashboard-post-likes">
           <p><%= userPost.likes %> Likes </p>
           </div>
 
+       
       </div> 
     <% } %>
     </section>

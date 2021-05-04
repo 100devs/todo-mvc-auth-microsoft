@@ -1,5 +1,10 @@
 ## Binary Upload Boom
 
+## Nice-to-have stretch goals (not need-to-haves) (updated May 1):
+- have the dashboard posts appear in reverse-chronological order (most recent uploads show up first) - DONE
+- profile page can be requested for any user -- so the path will be changed from `/profile` to `/profile/:username`
+- CSS styling on the forms
+
 ## Things to do/help (updated April 29th):
 - CSS for: all ejs files
 - EJS files: profile.ejs, singlePost.ejs (with lots of event listeners)

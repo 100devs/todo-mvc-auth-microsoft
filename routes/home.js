@@ -7,4 +7,8 @@ router.get('/', ensureGuest, homeController.getIndex)
 
 router.get('/dashboard', ensureAuth, homeController.getDashboard) 
 
+router.get('/profile', ensureAuth, homeController.getProfile) 
+
+router.get('/profile/:username', ensureAuth, homeController.getOtherProfile);
+
 module.exports = router
