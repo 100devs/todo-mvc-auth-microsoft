@@ -4,6 +4,7 @@ const mongoose = require('mongoose') //imports mongoose (ODM Framework)
 const passport = require('passport') // auth middleware
 const session = require('express-session') // Keeps users session logged in and creates the cookie
 const MongoStore = require('connect-mongo')(session) //saving session data in the db
+//test comment
 const flash = require('express-flash');
 const cors = require('cors');
 const path = require('path');
