@@ -3,6 +3,7 @@ const UserPost = require('../models/UserPost')
 module.exports = {
   getPost: async (req, res) => {
     await UserPost.findOne({_id: req.params.id}, (err, post) => {
+      console.log(post.likedUsers);
       if(err) console.error(err);
       else {
         console.log(post.img);
@@ -22,17 +23,17 @@ module.exports = {
   },
   likePost: async (req, res) => {
     try {
-      let bool = false;
-      await UserPost.findOne({_id: req.body.id}, (err, post) => {
-        if(err) console.error(err);
-        console.log(post);
-        if(post.likedUsers.includes(req.user.username)) {
-          bool = true;
-          return res.json({message: 'exists'});
-        }
+      console.log(req.user.username);
+      let bool;
+      await UserPost.findOne({_id: req.body.id})
+      .then(doc => {
+        console.log(doc);
+        bool = doc.likedUsers.includes(req.user.username);
       });
-      console.log('test');
-      if(!bool) {
+      if(bool) {
+        console.log('hits?');
+        res.json({message: 'exists'});
+      } else {
       let newCount = ++req.body.likes;
       await UserPost.findOneAndUpdate({_id: req.body.id}, {
         likes: newCount,
