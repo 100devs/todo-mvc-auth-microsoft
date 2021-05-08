@@ -1,0 +1,64 @@
+
+.mainFeed {
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+}
+
+.dashboard-nav > ul {
+  list-style: none;
+  padding: 6px;
+}
+
+.dashboard-nav a {
+  text-decoration: none;
+  font-family: 'Slabo 27px', serif;
+  color:black;
+  font-size: 20px;
+}
+
+.dashboard-upload-form{
+  padding-bottom: 40px;
+  text-align:center;
+}
+
+.dashboard-h1, h2{
+ font-family: 'Staatliches', cursive;
+  color:black;
+  padding: 29px 0px 34px 0;
+}
+h1{
+ text-align:center;
+  font-size: 65px;
+}
+h2 {font-size: 45px; margin-left: 2rem;}
+
+.dashboard-userPost-img{
+  max-width:400px;
+}
+
+.dashboard-userPost-p{
+  font-family: 'Slabo 27px', serif;
+  font-size: 23px;
+  border-bottom: 2px dotted black;
+  text-align:center;
+}
+
+.userPost-profile-a{
+   font-family: 'Staatliches', cursive;
+   color:black;
+}
+.userPost-profile-a:hover{
+  color:blue;
+}
+
+ #photoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    padding: 37px;
+    width: 40%;
+    margin: 8px;
+}

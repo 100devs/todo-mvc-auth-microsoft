@@ -1,0 +1,35 @@
+<%- include('partials/_header_main'); %>
+
+<section class = "dashboard-container">
+    <form class= "dashboard-upload-form" action="/dashboard" method="post" enctype="multipart/form-data">
+        <label> Upload pic </label>
+          <input type="file" name="photo" />
+          
+        <label>Caption:</label>
+          <input type="text" name="caption">
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <section class="mainFeed">
+    <% for (let userPost of userPosts) { %>
+      <div id="photoContainer">
+        
+        <p class ="dashboard-userPost-p"><a class="userPost-profile-a" href="/profile/<%= userPost.username %>"><%= userPost.username %></a> posted: </p>
+       <section class = "dashboard-displayImg-container">
+        <div class="displayImage">
+        </section>
+       <p> <%= userPost.caption %></p>
+       <a href="post/<%= userPost.id %>">
+        <img class ="dashboard-userPost-img" src='<%= userPost.img %>'>
+        </a>
+        <div class = "dashboard-post-likes">
+          <p><%= userPost.likes %> Likes </p>
+          </div>
+
+      </div> 
+    <% } %>
+    </section>
+    </section>
+</body>
+</html>

@@ -5,7 +5,8 @@ const router = express.Router()
 const loginCont = require('../controllers/loginCont');
 const signCont = require('../controllers/signCont');
 
-router.get('/login', loginCont.getPage);
-router.get('/signup', signCont.getPage);
+router.get('/', loginCont.getPage);
+router.post('/', loginCont.postLogin);
 
 module.exports = router
+ 

@@ -1,58 +1,36 @@
-const OIDCStrategy = require('passport-azure-ad').OIDCStrategy
-const mongoose = require('mongoose')
-const config = require('../config/config')
-const User = require('../models/User')
+const lstrat = require('passport-local').Strategy;
+const mongoose = require('mongoose');
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
-module.exports = function (passport) {
-  passport.use(
-    new OIDCStrategy({
-        identityMetadata: config.creds.identityMetadata,
-        clientID: config.creds.clientID,
-        responseType: config.creds.responseType,
-        responseMode: config.creds.responseMode,
-        redirectUrl: config.creds.redirectUrl,
-        allowHttpForRedirectUrl: config.creds.allowHttpForRedirectUrl,
-        clientSecret: config.creds.clientSecret,
-        validateIssuer: config.creds.validateIssuer,
-        isB2C: config.creds.isB2C,
-        issuer: config.creds.issuer,
-        passReqToCallback: config.creds.passReqToCallback,
-        scope: config.creds.scope,
-        loggingLevel: config.creds.loggingLevel,
-        nonceLifetime: config.creds.nonceLifetime,
-        nonceMaxAmount: config.creds.nonceMaxAmount,
-        useCookieInsteadOfSession: config.creds.useCookieInsteadOfSession,
-        cookieEncryptionKeys: config.creds.cookieEncryptionKeys,
-        clockSkew: config.creds.clockSkew,
-      },
-      async (accessToken, refreshToken, profile, done) => {
-        console.log('auth: ', profile)
-        const newUser = {
-          microsoftId: profile.oid,
-          displayName: profile.displayName,
-        }
-
-        try {
-          let user = await User.findOne({ microsoftId: profile.oid })
-
-          if (user) {
-            done(null, user)
-          } else {
-            user = await User.create(newUser)
-            done(null, user)
-          }
-        } catch (err) {
-          console.error(err)
-        }
-      }
-    )
-  )
-
-  passport.serializeUser((user, done) => {
+//export to server.js
+ module.exports = function(passport) {
+   passport.use(new lstrat({
+     usernameField: 'email' //set up usernameField to be email field in inputs
+   }, async (email, password, done) => {
+     User.findOne({email: email.toLowerCase()}, async (err, user) => {
+       if(err) {return done(err);} //return callback with error only
+       if(!user) {
+         return done(null, false, {msg: 'user does not exist'});
+         //return callback with null error, !user, and error message
+       }
+       try {
+         if(await bcrypt.compare(password, user.password)) {
+           return done(null, user);
+         }
+         else {
+           return done(null, false, {msg: 'invalid password'})
+         }
+       } catch(e) {
+         return done(e);
+       }
+     })
+   }))
+   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
 
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => done(err, user))
   })
-}
+ }

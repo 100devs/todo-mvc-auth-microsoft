@@ -1,0 +1,49 @@
+<%- include('partials/_header_main'); %>
+
+<section class = "single-post-container">
+  <section class= "singlePost-img-container">
+
+  <h1 class="singlePost-h1"> <%= post.username %>'s Post</h1>
+   <a class="singlePost-profile-a" href="../profile/<%= post.username %>">View <%= post.username %>'s profile %></a>
+<!--    Page to display individual posts -->
+   
+   
+    
+     <img src='<%=post.img%>' data-imgID=<%=post.id%> id="mainImg">
+     <p class="singlePost-caption">Caption: <%= post.caption %></p>
+
+     <i id="likeBtn"class="fas fa-heart">
+     </i>
+     <p id="likes">Likes:
+     <span id="grabLikes"><%= post.likes %></span>
+     </p>
+     <p id="errorMsg"></p>
+
+      <% if (post.username === username) { %>
+        <button class="deleteBtn" id="deleteBtn">Delete Photo</button>
+    <% } %>
+    
+
+    </section>
+
+  <section class="singlePost-comment-container">
+    <p class= "singlePost-comment-p">Comments: </p>
+
+   <div class="singlePost-comments">
+    <% for(comment of post.comments) { %> 
+      <p class="singlePost-comment"><%=comment%> </p>
+    <% } %>
+    </div>
+
+
+    <div>
+    <input id="message" type="text" name="message"  placeholder="Add a comment">
+          <button id="commentBtn">Post</button>
+      </div>
+   
+  </section>
+
+    </section> 
+    <script src="/js/main.js"></script>
+</body>
+</html>

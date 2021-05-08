@@ -1,0 +1,23 @@
+<%- include('partials/_header_login'); %>
+
+<section class="signup-container">
+<h1 class= "signup-h1">Register</h1>
+    <% if (locals.messages.errors) { %>
+        <% messages.errors.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+    <form class="signup-form" action="/signup" method="POST">
+        <input class="signup-input" type="text" name="username" placeholder="User Name">
+        <input class="signup-input" type="email" name="email" placeholder="Email">
+        <input class="signup-input" type="password" name="password" placeholder="Password">
+        <input class="signup-input" type="password" name="confirmPassword" placeholder="Confirm Password">
+        <input class="signup-input" type="submit">
+    </form>
+    <div class="signup-login-link">
+      <a class="signup-login-a" href="../login">Already a member? Login here.</a>
+    </div>
+
+    </section>
+</body>
+</html>

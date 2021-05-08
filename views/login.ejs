@@ -1,0 +1,28 @@
+<%- include('partials/_header_login'); %>
+
+<section class = "login-container">
+
+<h1 class="login-h1">Login</h1>
+    <% if (locals.messages.errors) { %>
+        <% messages.errors.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+    <% if (locals.messages.info) { %>
+        <% messages.info.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+    <form class="login-form"  action="../login" method="POST">
+        <input class= "login-input" type="email" name="email" placeholder="Email">
+        <input class= "login-input" type="password" name="password" placeholder="Password">
+        <input class="submit-btn" type="submit">
+    </form>
+
+    <div class="login-a-div">
+      <a class="login-a" href="../signup">Not a member? Sign up here.</a>
+    </div>
+
+    </section>
+</body>
+</html>

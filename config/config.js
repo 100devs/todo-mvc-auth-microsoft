@@ -1,15 +1,15 @@
 exports.creds = {
     identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration', 
 
-    clientID: '<add your own>',
+    clientID: '0bd0f608-3470-493a-8dc8-d7682aefed92',
   
-    clientSecret: '<add your own>', 
+    clientSecret: 'PxS_-fjKMW1i-Wy_6T4WK7s7mE.4P7HevC', 
   
     responseType: 'code id_token', 
   
     responseMode: 'form_post', 
   
-    redirectUrl: 'http://localhost:2121/auth/openid/return', 
+    redirectUrl: 'https://bubsocialnetwork.egodeath.repl.co/auth/openid/return', 
   
     allowHttpForRedirectUrl: true,
   
@@ -37,7 +37,7 @@ exports.creds = {
     clockSkew: null,
   };
   
-  exports.destroySessionUrl = 'http://localhost:2121';
+  exports.destroySessionUrl = 'https://bubsocialnetwork.egodeath.repl.co';
   
   exports.useMongoDBSessionStore = false;
   
