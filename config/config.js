@@ -1,15 +1,15 @@
 exports.creds = {
     identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration', 
 
-    clientID: '<add your own>',
+    clientID: 'db7f56ff-e638-4dec-a220-7f710e087c88',
   
-    clientSecret: '<add your own>', 
+    clientSecret: 'vSWlkQc_.weq360un1c~fXvfKpM26_MT_9', 
   
     responseType: 'code id_token', 
   
     responseMode: 'form_post', 
   
-    redirectUrl: 'http://localhost:2121/auth/openid/return', 
+    redirectUrl: 'http://localhost:3000/auth/openid/return', 
   
     allowHttpForRedirectUrl: true,
   
@@ -37,7 +37,7 @@ exports.creds = {
     clockSkew: null,
   };
   
-  exports.destroySessionUrl = 'http://localhost:2121';
+  exports.destroySessionUrl = 'http://localhost:3000';
   
   exports.useMongoDBSessionStore = false;
   
